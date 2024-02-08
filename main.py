@@ -46,6 +46,8 @@ seq = comp_seq()
 chances = 10
 game = True
 print(f"Welcome to Master Mind:\n{COLOR_LIST}\nwhere G->Green B->Blue R->Red Y->Yellow P->Pink O->Orange W->White T->Teal")
+print("Guess four colors\nfor hints after each turn\n('+' -> correct color, correct position)\n('-' -> correct color, wrong position")
+print(COLOR_LIST)
 while(game):
     chances -= 1
     user = user_guess()
