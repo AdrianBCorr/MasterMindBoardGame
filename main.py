@@ -42,10 +42,18 @@ def check_seq(sequence, user_input):
     
     print(f"{user_input} {reply}")
 
-
-
 seq = comp_seq()
-
-user = user_guess()
-
-check_seq(seq, user)
+chances = 10
+game = True
+print(f"Welcome to Master Mind:\n{COLOR_LIST}\nwhere G->Green B->Blue R->Red Y->Yellow P->Pink O->Orange W->White T->Teal")
+while(game):
+    chances -= 1
+    user = user_guess()
+    check_seq(seq, user)
+    if chances < 1:
+        game = False
+        print(f"You Lost!\nThe sequence is {seq}")
+    elif user == seq:
+        print(f"You Won in {10 - chances} tries!!!")
+        game = False
+    
