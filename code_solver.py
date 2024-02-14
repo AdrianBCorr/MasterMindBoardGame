@@ -1,9 +1,12 @@
 import itertools
 
 def generate_all_combinations(colors, length):
+    """Generates a list of all the possible sequence that the code could be. With no duplicate colors in the code"""
     return list(itertools.product(colors, repeat=length))
 
+
 def calculate_feedback(secret_code, guess):
+    """function to give feedback as to color or position of the sequence"""
     correct_color_and_position = 0
     correct_color_only = 0
     
@@ -23,17 +26,23 @@ def calculate_feedback(secret_code, guess):
     
     return correct_color_and_position, correct_color_only
 
+
 def guess_secret_code(possible_codes):
+    """function is guessing the first code in the possible codes"""
     return possible_codes[0]
 
+
 def remove_inconsistent_codes(possible_codes, guess, feedback):
+    """function colculates the feedback of all codes and removes the inconsistent codes"""
     consistent_codes = []
     for code in possible_codes:
         if calculate_feedback(code, guess) == feedback:
             consistent_codes.append(code)
     return consistent_codes
 
+
 def mastermind(colors, length, secret_code):
+    """function that runs the mastermind solver"""
     possible_codes = generate_all_combinations(colors, length)
     guesses = 0
     
@@ -53,9 +62,14 @@ def mastermind(colors, length, secret_code):
             print("Maximum number of guesses reached. The secret code is still unknown.")
             break
 
-# Example usage:
+
 colors = ['R', 'Y', 'P', 'O', 'W', 'T', 'B', 'G']
 length = 4
-secret_code = ['T', 'B', 'R', 'W']
+secret_code = ['G', 'B', 'R', 'W']
 
 mastermind(colors, length, secret_code)
+
+
+"""This program's main purpose is to remove all the possible inconsistent codes,
+ then makes a guess and again removes other inconsistent code. 
+ Until the actual code is got"""
